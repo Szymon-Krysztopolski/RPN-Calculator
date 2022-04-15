@@ -43,15 +43,12 @@ class Calculator(tmp: MainActivity) {
             }
         }
     }
-
     private fun main_num_add(s: String){
         main_text.text = main_text.text.toString().plus(s)
     }
-
     private fun main_num_del(){
         main_text.text = main_text.text.dropLast(1);
     }
-
     private fun chgSign(){
         if(main_text.text.isNotEmpty()){
             if(main_text.text[0]=='-'){
@@ -61,7 +58,6 @@ class Calculator(tmp: MainActivity) {
             }
         }
     }
-
     private fun stack_add(){
         try{
             stack.push(main_text.text.toString().toDouble())
@@ -72,7 +68,6 @@ class Calculator(tmp: MainActivity) {
             main_text.text=""
         }
     }
-
     private fun stack_update(){
         for(i in 0 until stack_SIZE) screen_stack[i].text = "s".plus((i+1).toString().plus(": "))
 
@@ -82,12 +77,10 @@ class Calculator(tmp: MainActivity) {
             }
         }
     }
-
     private fun stack_clear(){
         stack.clear()
         stack_update()
     }
-
     private fun action1arg(act: Char){
         if(stack.isNotEmpty()){
             val a: Double = stack.pop()
@@ -99,7 +92,6 @@ class Calculator(tmp: MainActivity) {
             MYtoast_mess("stack is empty")
         }
     }
-
     private fun action2arg(act: Char){
         if(stack.size>=2){
             val a: Double = stack.pop()
@@ -126,7 +118,6 @@ class Calculator(tmp: MainActivity) {
             MYtoast_mess("size of stack is below 2")
         }
     }
-
     private fun MYtoast_mess(mess: String){
         Toast.makeText(ma.applicationContext, mess, Toast.LENGTH_SHORT).show()
     }
