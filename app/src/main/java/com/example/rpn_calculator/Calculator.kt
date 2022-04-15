@@ -21,6 +21,7 @@ class Calculator(tmp: MainActivity) {
         ma.findViewById(R.id.stack4)
     )
     private var stack = Stack<Double>()
+    private var MEGA_stack = Stack<Stack<Double>>()
 
     fun press(button: Button) {
         when(button.text){
@@ -39,6 +40,7 @@ class Calculator(tmp: MainActivity) {
                 R.id.sqrt -> action1arg('q')
                 R.id.drop -> action1arg(' ')
                 R.id.ac -> stack_clear()
+                R.id.undo -> stack_undo()
                 else -> MYtoast_mess(button.text.toString())
             }
         }
@@ -51,6 +53,7 @@ class Calculator(tmp: MainActivity) {
     }
     private fun chgSign(){
         if(main_text.text.isNotEmpty()){
+            MEGA_stuck_update()
             if(main_text.text[0]=='-'){
                 main_text.text = main_text.text.drop(1)
             } else {
@@ -60,6 +63,7 @@ class Calculator(tmp: MainActivity) {
     }
     private fun stack_add(){
         try{
+            MEGA_stuck_update()
             stack.push(main_text.text.toString().toDouble())
             stack_update()
         } catch (e: Exception){
@@ -78,11 +82,24 @@ class Calculator(tmp: MainActivity) {
         }
     }
     private fun stack_clear(){
+        MEGA_stuck_update()
         stack.clear()
         stack_update()
     }
+    private fun stack_undo(){
+        if(MEGA_stack.isNotEmpty()){
+            stack=MEGA_stack.pop()
+            stack_update()
+        } else {
+            MYtoast_mess("MEGAstack is empty")
+        }
+    }
+    private  fun MEGA_stuck_update(){
+        MEGA_stack.push(stack.clone() as Stack<Double>)
+    }
     private fun action1arg(act: Char){
         if(stack.isNotEmpty()){
+            MEGA_stuck_update()
             val a: Double = stack.pop()
             when(act){
                 'q' -> stack.push(sqrt(a))
@@ -94,6 +111,7 @@ class Calculator(tmp: MainActivity) {
     }
     private fun action2arg(act: Char){
         if(stack.size>=2){
+            MEGA_stuck_update()
             val a: Double = stack.pop()
             val b: Double = stack.pop()
             when(act) {
