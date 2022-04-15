@@ -3,6 +3,7 @@ package com.example.rpn_calculator
 import android.widget.Toast
 import android.widget.Button
 import android.widget.TextView
+import java.lang.Exception
 import java.util.*
 import kotlin.math.min
 
@@ -46,15 +47,20 @@ class Calculator(tmp: MainActivity) {
     }
 
     private fun stack_add(){
-        stack.push(main_text.text.toString().toDouble())
-        main_text.text=""
-        stack_update()
+        try{
+            stack.push(main_text.text.toString().toDouble())
+            stack_update()
+        } catch (e: Exception){
+            Toast.makeText(ma.applicationContext, "Error with conversion to double", Toast.LENGTH_SHORT).show()
+        } finally {
+            main_text.text=""
+        }
     }
 
     private fun stack_update(){
         if(stack.isNotEmpty()){
             for(i in 0 until min(stack_SIZE,stack.size)){
-                screen_stack[i].text = stack[stack.size-i-1].toString()
+                screen_stack[i].text = "s".plus((i+1).toString().plus(": ".plus(stack[stack.size-i-1].toString())))
             }
         }
     }
