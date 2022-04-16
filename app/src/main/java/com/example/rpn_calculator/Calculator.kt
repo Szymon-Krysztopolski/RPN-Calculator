@@ -1,5 +1,6 @@
 package com.example.rpn_calculator
 
+import android.content.Intent
 import android.widget.Toast
 import android.widget.Button
 import android.widget.TextView
@@ -27,7 +28,7 @@ class Calculator(tmp: MainActivity) {
         when(button.text){
             in alphabet -> main_num_add(button.text as String)
             else -> when(button.id){
-                R.id.settings -> Toast.makeText(ma.applicationContext, "here", Toast.LENGTH_SHORT).show()
+                R.id.settings -> openSettings()//Toast.makeText(ma.applicationContext, "here", Toast.LENGTH_SHORT).show()
                 R.id.actChgSign -> chgSign()
                 R.id.enter -> stack_add()
                 R.id.back -> main_num_del()
@@ -53,12 +54,13 @@ class Calculator(tmp: MainActivity) {
     }
     private fun chgSign(){
         if(main_text.text.isNotEmpty()){
-            MEGA_stuck_update()
             if(main_text.text[0]=='-'){
                 main_text.text = main_text.text.drop(1)
             } else {
                 main_text.text = "-".plus(main_text.text)
             }
+        } else {
+            MYtoast_mess("There is no number to change")
         }
     }
     private fun stack_add(){
@@ -67,6 +69,7 @@ class Calculator(tmp: MainActivity) {
             stack.push(main_text.text.toString().toDouble())
             stack_update()
         } catch (e: Exception){
+            stack_undo()
             MYtoast_mess("Error with conversion to double")
         } finally {
             main_text.text=""
@@ -120,8 +123,7 @@ class Calculator(tmp: MainActivity) {
                 '*' -> stack.push(a * b)
                 '/' -> {
                     if (b!=0.0) stack.push(a / b) else {
-                        stack.push(b)
-                        stack.push(a)
+                        stack_undo()
                         MYtoast_mess("you can't div by zero")
                     }
                 }
@@ -138,5 +140,9 @@ class Calculator(tmp: MainActivity) {
     }
     private fun MYtoast_mess(mess: String){
         Toast.makeText(ma.applicationContext, mess, Toast.LENGTH_SHORT).show()
+    }
+    private fun openSettings(){
+        val intent = Intent(ma, MySettings::class.java)
+        ma.startActivity(intent)
     }
 }
