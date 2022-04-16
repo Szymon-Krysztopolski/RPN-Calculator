@@ -28,7 +28,7 @@ class Calculator(tmp: MainActivity) {
         when(button.text){
             in alphabet -> main_num_add(button.text as String)
             else -> when(button.id){
-                R.id.settings -> openSettings()//Toast.makeText(ma.applicationContext, "here", Toast.LENGTH_SHORT).show()
+                R.id.settings -> openSettings()
                 R.id.actChgSign -> chgSign()
                 R.id.enter -> stack_add()
                 R.id.back -> main_num_del()
@@ -64,16 +64,23 @@ class Calculator(tmp: MainActivity) {
         }
     }
     private fun stack_add(){
-        try{
-            MEGA_stuck_update()
-            stack.push(main_text.text.toString().toDouble())
-            stack_update()
-        } catch (e: Exception){
+        MEGA_stuck_update()
+        if(main_text.text.isNotEmpty()){
+            try{
+                stack.push(main_text.text.toString().toDouble())
+            } catch (e: Exception){
+                stack_undo()
+                MYtoast_mess("Error with conversion to double")
+            } finally {
+                main_text.text=""
+            }
+        } else if (stack.isNotEmpty()){
+            stack.push(stack[stack.size-1])
+        } else {
             stack_undo()
-            MYtoast_mess("Error with conversion to double")
-        } finally {
-            main_text.text=""
+            MYtoast_mess("Stack is empty")
         }
+        stack_update()
     }
     private fun stack_update(){
         for(i in 0 until stack_SIZE) screen_stack[i].text = "s".plus((i+1).toString().plus(": "))
@@ -105,7 +112,13 @@ class Calculator(tmp: MainActivity) {
             MEGA_stuck_update()
             val a: Double = stack.pop()
             when(act){
-                'q' -> stack.push(sqrt(a))
+                'q' -> {
+                    if(a>=0) stack.push(sqrt(a))
+                    else {
+                        stack_undo()
+                        MYtoast_mess("you can't sqrt negative number")
+                    }
+                }
             }
             stack_update()
         } else {

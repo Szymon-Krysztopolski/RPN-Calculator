@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         for(i in butt_names){
             val resID = resources.getIdentifier(i, "id", packageName)
-            buttons.add(findViewById(resID));
+            buttons.add(findViewById(resID))
         }
 
         for(i in buttons.indices) {

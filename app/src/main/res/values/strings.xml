@@ -123,4 +123,10 @@
     <string name="s2">s2:</string>
     <string name="s4">s4:</string>
     <string name="s1">s1:</string>
+    <string name="screen_color">Screen color</string>
+    <string name="screen_color_text">Screen color text</string>
+    <string name="precision">Precision</string>
+    <string name="buttons_settings_text_color">Buttons settings text color</string>
+    <string name="buttons_settings_color">Buttons settings color</string>
+    <string name="change">change</string>
 </resources>

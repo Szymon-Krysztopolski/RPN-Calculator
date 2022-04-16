@@ -6,4 +6,117 @@
     android:layout_height="match_parent"
     tools:context=".MySettings">
 
+    <TextView
+        android:id="@+id/textColorScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:text="@string/screen_color"
+        app:layout_constraintBottom_toTopOf="@+id/textColorScreenText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textColorScreenText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:text="@string/screen_color_text"
+        app:layout_constraintBottom_toTopOf="@+id/textColorButtSett"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textColorScreen" />
+
+    <TextView
+        android:id="@+id/textColorButtSett"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:text="@string/buttons_settings_color"
+        app:layout_constraintBottom_toTopOf="@+id/textColorButtSettText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textColorScreenText" />
+
+    <TextView
+        android:id="@+id/textColorButtSettText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:text="@string/buttons_settings_text_color"
+        app:layout_constraintBottom_toTopOf="@+id/textPrecision"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textColorButtSett" />
+
+    <TextView
+        android:id="@+id/textPrecision"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dip"
+        android:paddingRight="20dip"
+        android:text="@string/precision"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textColorButtSettText" />
+
+    <Spinner
+        android:id="@+id/spinColorScreen"
+        android:layout_width="143dp"
+        android:layout_height="48dp"
+        android:entries="@array/theme_options"
+        app:layout_constraintBottom_toTopOf="@+id/spinColorScreenText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <Spinner
+        android:id="@+id/spinPrecision"
+        android:layout_width="143dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="4dp"
+        android:entries="@array/precision_options"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinColorButtSettText" />
+
+    <Spinner
+        android:id="@+id/spinColorButtSettText"
+        android:layout_width="143dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="4dp"
+        android:entries="@array/theme_options"
+        app:layout_constraintBottom_toTopOf="@+id/spinPrecision"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinColorButtSett" />
+
+    <Spinner
+        android:id="@+id/spinColorButtSett"
+        android:layout_width="143dp"
+        android:layout_height="48dp"
+        android:entries="@array/theme_options"
+        app:layout_constraintBottom_toTopOf="@+id/spinColorButtSettText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinColorScreenText" />
+
+    <Spinner
+        android:id="@+id/spinColorScreenText"
+        android:layout_width="143dp"
+        android:layout_height="48dp"
+        android:entries="@array/theme_options"
+        app:layout_constraintBottom_toTopOf="@+id/spinColorButtSett"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinColorScreen" />
+
+    <Button
+        android:id="@+id/ButtSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="@string/change"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
