@@ -1,20 +1,30 @@
 package com.example.rpn_calculator
 
 import android.content.Intent
+import android.graphics.Color
+import android.os.Bundle
+import android.os.Parcelable
+import android.text.Layout
 import android.widget.Toast
 import android.widget.Button
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import java.io.Serializable
 import java.lang.Exception
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.min
 import kotlin.math.pow
+import kotlin.math.round
 import kotlin.math.sqrt
 
-class Calculator(tmp: MainActivity) {
-    private val ma = tmp
+class Calculator(tmp: MainActivity) : Serializable {
+    private val ma=tmp
+
     private val main_text: TextView = ma.findViewById(R.id.main_num)
     private val alphabet = arrayOf("0","1","2","3","4","5","6","7","8","9",".")
-    private val stack_SIZE = 4;
+    private val stack_SIZE = 4
+    private var stack_prec = 5
     val screen_stack = arrayOf<TextView>(
         ma.findViewById(R.id.stack1),
         ma.findViewById(R.id.stack2),
@@ -86,15 +96,20 @@ class Calculator(tmp: MainActivity) {
         for(i in 0 until stack_SIZE) screen_stack[i].text = "s".plus((i+1).toString().plus(": "))
 
         if(stack.isNotEmpty()){
+            val tmp: Double = 10.0.pow(stack_prec)
             for(i in 0 until min(stack_SIZE,stack.size)){
-                screen_stack[i].text = "s".plus((i+1).toString().plus(": ".plus(stack[stack.size-i-1].toString())))
+                screen_stack[i].text = "s".plus((i+1).toString().plus(": ".plus((round(stack[stack.size-i-1]*tmp)/tmp).toString())))
             }
         }
     }
     private fun stack_clear(){
-        MEGA_stuck_update()
-        stack.clear()
-        stack_update()
+        if(stack.isNotEmpty()){
+            MEGA_stuck_update()
+            stack.clear()
+            stack_update()
+        } else {
+            MYtoast_mess("stack is empty")
+        }
     }
     private fun stack_undo(){
         if(MEGA_stack.isNotEmpty()){
@@ -104,7 +119,7 @@ class Calculator(tmp: MainActivity) {
             MYtoast_mess("MEGAstack is empty")
         }
     }
-    private  fun MEGA_stuck_update(){
+    private fun MEGA_stuck_update(){
         MEGA_stack.push(stack.clone() as Stack<Double>)
     }
     private fun action1arg(act: Char){
@@ -128,8 +143,8 @@ class Calculator(tmp: MainActivity) {
     private fun action2arg(act: Char){
         if(stack.size>=2){
             MEGA_stuck_update()
-            val a: Double = stack.pop()
             val b: Double = stack.pop()
+            val a: Double = stack.pop()
             when(act) {
                 '+' -> stack.push(a + b)
                 '-' -> stack.push(a - b)
@@ -154,8 +169,52 @@ class Calculator(tmp: MainActivity) {
     private fun MYtoast_mess(mess: String){
         Toast.makeText(ma.applicationContext, mess, Toast.LENGTH_SHORT).show()
     }
+    private fun chgStackPrec(prec: Int){
+        stack_prec=prec
+    }
     private fun openSettings(){
         val intent = Intent(ma, MySettings::class.java)
-        ma.startActivity(intent)
+        ma.startActivityForResult(intent,1)
+    }
+    fun updateSettings(list: ArrayList<String>){
+        val settButts_array = arrayOf<Button>(
+            ma.findViewById(R.id.enter),
+            ma.findViewById(R.id.undo),
+            ma.findViewById(R.id.drop),
+            ma.findViewById(R.id.swap),
+            ma.findViewById(R.id.ac),
+            ma.findViewById(R.id.settings),
+            ma.findViewById(R.id.back)
+        )
+        val textViewScreen_array = arrayOf<TextView>(
+            ma.findViewById(R.id.stack1),
+            ma.findViewById(R.id.stack2),
+            ma.findViewById(R.id.stack3),
+            ma.findViewById(R.id.stack4),
+            ma.findViewById(R.id.main_num)
+        )
+
+        ma.findViewById<ConstraintLayout>(R.id.screen).setBackgroundColor(translate_color(list[0]))
+        for(i in textViewScreen_array){
+            i.setTextColor(translate_color(list[1]))
+        }
+        for(i in settButts_array){
+            i.setBackgroundColor(translate_color(list[2]))
+            i.setTextColor(translate_color(list[3]))
+        }
+
+        chgStackPrec(list[4].toInt())
+        stack_update()
+    }
+    private fun translate_color(color: String): Int{
+        when(color){
+            "Red" -> return Color.RED
+            "Green" -> return Color.GREEN
+            "Blue" -> return Color.BLUE
+            "Black" -> return Color.BLACK
+            "White" -> return Color.WHITE
+            "Gray" -> return Color.GRAY
+            else -> return Color.CYAN
+        }
     }
 }
