@@ -202,8 +202,8 @@ class Calculator(tmp: MainActivity) : Serializable {
             i.setBackgroundColor(translate_color(list[2]))
             i.setTextColor(translate_color(list[3]))
         }
-
         chgStackPrec(list[4].toInt())
+
         stack_update()
     }
     private fun translate_color(color: String): Int{

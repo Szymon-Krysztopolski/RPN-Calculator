@@ -12,10 +12,10 @@ class MySettings : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        val val_def = arrayOf(5,3,0,3,4)
+        val val_def = arrayOf(5,4,0,3,4)
         val spinners_array = arrayOf<Spinner>(
             this.findViewById(R.id.spinColorScreen), //gray
-            this.findViewById(R.id.spinColorScreenText), //black
+            this.findViewById(R.id.spinColorScreenText), //white
             this.findViewById(R.id.spinColorButtSett), //red
             this.findViewById(R.id.spinColorButtSettText), //black
             this.findViewById(R.id.spinPrecision) //5

@@ -17,7 +17,7 @@
             android:layout_width="370dp"
             android:layout_height="238dp"
             android:layout_marginTop="16dp"
-            android:background="@android:color/darker_gray"
+            android:background="#666"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
                 android:paddingLeft="20dip"
                 android:paddingRight="20dip"
                 android:text="@string/s4"
-                android:textColor="#4E342E"
+                android:textColor="#fff"
                 app:layout_constraintBottom_toTopOf="@+id/stack3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +42,7 @@
                 android:paddingLeft="20dip"
                 android:paddingRight="20dip"
                 android:text="@string/s3"
-                android:textColor="#4E342E"
+                android:textColor="#fff"
                 app:layout_constraintBottom_toTopOf="@+id/stack2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/stack4" />
@@ -54,7 +54,7 @@
                 android:paddingLeft="20dip"
                 android:paddingRight="20dip"
                 android:text="@string/s2"
-                android:textColor="#4E342E"
+                android:textColor="#fff"
                 app:layout_constraintBottom_toTopOf="@+id/stack1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/stack3" />
@@ -66,7 +66,7 @@
                 android:paddingLeft="20dip"
                 android:paddingRight="20dip"
                 android:text="@string/s1"
-                android:textColor="#4E342E"
+                android:textColor="#fff"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/stack2" />
@@ -75,6 +75,7 @@
                 android:id="@+id/main_num"
                 android:layout_width="120dp"
                 android:layout_height="38dp"
+                android:textColor="#fff"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -100,7 +101,7 @@
                     android:layout_marginRight="4dp"
                     android:layout_weight=".20"
                     android:height="60dp"
-                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:backgroundTint="#f00"
                     android:text="@string/undo"
                     android:textColor="#000" />
 
@@ -113,7 +114,7 @@
                     android:layout_marginRight="4dp"
                     android:layout_weight=".20"
                     android:height="60dp"
-                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:backgroundTint="#f00"
                     android:text="@string/drop"
                     android:textColor="#000" />
 
@@ -126,7 +127,7 @@
                     android:layout_marginRight="4dp"
                     android:layout_weight=".20"
                     android:height="60dp"
-                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:backgroundTint="#f00"
                     android:text="@string/swap"
                     android:textColor="#000" />
 
@@ -139,7 +140,7 @@
                     android:layout_marginRight="4dp"
                     android:layout_weight=".20"
                     android:height="60dp"
-                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:backgroundTint="#f00"
                     android:text="@string/ac"
                     android:textColor="#000" />
 
@@ -152,7 +153,7 @@
                     android:layout_marginRight="4dp"
                     android:layout_weight=".20"
                     android:height="60dp"
-                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:backgroundTint="#f00"
                     android:text="@string/gear"
                     android:textColor="#000" />
             </TableRow>
@@ -420,7 +421,7 @@
                     android:layout_marginRight="4dp"
                     android:layout_weight="0.2"
                     android:height="60dp"
-                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:backgroundTint="#f00"
                     android:text="@string/del2"
                     android:textColor="@android:color/black" />
 
@@ -433,7 +434,7 @@
                     android:layout_marginRight="4dp"
                     android:layout_weight="0.2"
                     android:height="60dp"
-                    android:backgroundTint="@android:color/holo_red_dark"
+                    android:backgroundTint="#f00"
                     android:text="@string/enter"
                     android:textColor="@android:color/black" />
             </TableRow>
