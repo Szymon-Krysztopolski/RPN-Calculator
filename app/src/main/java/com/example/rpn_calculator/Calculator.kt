@@ -168,8 +168,8 @@ class Calculator(tmp: MainActivity) : Serializable {
                 }
                 'p' -> stack.push(a.pow(b))
                 's' -> {
-                    stack.push(a)
                     stack.push(b)
+                    stack.push(a)
                 }
             }
             stack_update()
