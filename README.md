@@ -3,8 +3,8 @@
 Aplikacja została wykonana na urządzenia mobilne, przy użycia języka Kotlin. Niektóre struktury zostały zapożyczone z języka Java. Aplikacja jest kalkulatorem w odwrotnej notacji polskiej (ang. reverse polish notation). Logika RPN polega na wprowadzaniu na stos najpierw argumentów działań, a potem dopiero samych działań. Przykładowo chcąc dodać do siebie liczby 2 i 5 wprowadzamy na stos 2, następnie 5 a na końcu operator dodawania. Można w ten sposób wykonać dowolne działanie matematyczne. Kalkulator nie posiada znaku równości standardowo kończącego równanie. Zamiast tego po naciśnięciu odpowiedniego przycisku działanie wykonuje się automatycznie.
 
 <p align="center">
-    <img src="photos/main_screen.png" width="280" height="580" alt="main_screen"/>
-    <img src="photos/settings.png" width="280" height="580" alt="settings"/>
+    <img src="photos/main_screen.png" width="380" height="760" alt="main_screen"/>
+    <img src="photos/settings.png" width="380" height="760" alt="settings"/>
 </p>
 
 ## Funkcjonalności
