@@ -69,6 +69,10 @@ class Calculator(tmp: MainActivity) : Serializable {
             } else {
                 main_text.text = "-".plus(main_text.text)
             }
+        } else if(stack.isNotEmpty()) {
+            MEGA_stuck_update()
+            stack[stack.size-1]=-1*stack[stack.size-1]
+            stack_update()
         } else {
             MYtoast_mess("There is no number to change")
         }
@@ -80,7 +84,7 @@ class Calculator(tmp: MainActivity) : Serializable {
                 stack.push(main_text.text.toString().toDouble())
             } catch (e: Exception){
                 stack_undo()
-                MYtoast_mess("Error with conversion to double")
+                MYtoast_mess("error with conversion to double")
             } finally {
                 main_text.text=""
             }
@@ -88,7 +92,7 @@ class Calculator(tmp: MainActivity) : Serializable {
             stack.push(stack[stack.size-1])
         } else {
             stack_undo()
-            MYtoast_mess("Stack is empty")
+            MYtoast_mess("text is empty")
         }
         stack_update()
     }
@@ -111,7 +115,7 @@ class Calculator(tmp: MainActivity) : Serializable {
             MYtoast_mess("stack is empty")
         }
     }
-    private fun stack_undo(){
+    fun stack_undo(){
         if(MEGA_stack.isNotEmpty()){
             stack=MEGA_stack.pop()
             stack_update()
@@ -166,7 +170,7 @@ class Calculator(tmp: MainActivity) : Serializable {
             MYtoast_mess("size of stack is below 2")
         }
     }
-    private fun MYtoast_mess(mess: String){
+    fun MYtoast_mess(mess: String){
         Toast.makeText(ma.applicationContext, mess, Toast.LENGTH_SHORT).show()
     }
     private fun chgStackPrec(prec: Int){
