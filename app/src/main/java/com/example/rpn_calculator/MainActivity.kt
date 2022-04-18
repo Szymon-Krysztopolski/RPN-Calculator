@@ -4,11 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
@@ -23,7 +21,7 @@ class MainActivity : AppCompatActivity(), GestureDetector.OnGestureListener {
         gestureDetector = GestureDetector(this)
 
         calc = Calculator(this)
-        val butt_names = arrayOf<String>(
+        val butt_names = arrayOf(
             "enter","back","undo","drop","swap","ac","settings",
             "pow","sqrt","actMulti","actDiv","actAdd","actSub",
             "actChgSign","dot",

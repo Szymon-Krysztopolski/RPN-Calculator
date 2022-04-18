@@ -23,7 +23,6 @@ class MySettings : AppCompatActivity() {
         for(i in spinners_array.indices){
             spinners_array[i].setSelection(val_def[i])
         }
-        //findViewById<Spinner>(R.id.spinColorScreen).setSelection(2)
 
         val settButt: Button = findViewById(R.id.ButtSettings)
         settButt.setOnClickListener {

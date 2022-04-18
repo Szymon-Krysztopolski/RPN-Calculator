@@ -2,9 +2,6 @@ package com.example.rpn_calculator
 
 import android.content.Intent
 import android.graphics.Color
-import android.os.Bundle
-import android.os.Parcelable
-import android.text.Layout
 import android.widget.Toast
 import android.widget.Button
 import android.widget.TextView
@@ -56,12 +53,15 @@ class Calculator(tmp: MainActivity) : Serializable {
             }
         }
     }
+
     private fun main_num_add(s: String){
         main_text.text = main_text.text.toString().plus(s)
     }
+
     private fun main_num_del(){
         main_text.text = main_text.text.dropLast(1);
     }
+
     private fun chgSign(){
         if(main_text.text.isNotEmpty()){
             if(main_text.text[0]=='-'){
@@ -77,6 +77,7 @@ class Calculator(tmp: MainActivity) : Serializable {
             MYtoast_mess("There is no number to change")
         }
     }
+
     private fun stack_add(){
         MEGA_stuck_update()
         if(main_text.text.isNotEmpty()){
@@ -96,6 +97,7 @@ class Calculator(tmp: MainActivity) : Serializable {
         }
         stack_update()
     }
+
     private fun stack_update(){
         for(i in 0 until stack_SIZE) screen_stack[i].text = "s".plus((i+1).toString().plus(": "))
 
@@ -106,6 +108,7 @@ class Calculator(tmp: MainActivity) : Serializable {
             }
         }
     }
+
     private fun stack_clear(){
         if(stack.isNotEmpty()){
             MEGA_stuck_update()
@@ -115,6 +118,7 @@ class Calculator(tmp: MainActivity) : Serializable {
             MYtoast_mess("stack is empty")
         }
     }
+
     fun stack_undo(){
         if(MEGA_stack.isNotEmpty()){
             stack=MEGA_stack.pop()
@@ -123,9 +127,11 @@ class Calculator(tmp: MainActivity) : Serializable {
             MYtoast_mess("MEGAstack is empty")
         }
     }
+
     private fun MEGA_stuck_update(){
         MEGA_stack.push(stack.clone() as Stack<Double>)
     }
+
     private fun action1arg(act: Char){
         if(stack.isNotEmpty()){
             MEGA_stuck_update()
@@ -144,6 +150,7 @@ class Calculator(tmp: MainActivity) : Serializable {
             MYtoast_mess("stack is empty")
         }
     }
+
     private fun action2arg(act: Char){
         if(stack.size>=2){
             MEGA_stuck_update()
@@ -170,16 +177,20 @@ class Calculator(tmp: MainActivity) : Serializable {
             MYtoast_mess("size of stack is below 2")
         }
     }
+
     fun MYtoast_mess(mess: String){
         Toast.makeText(ma.applicationContext, mess, Toast.LENGTH_SHORT).show()
     }
+
     private fun chgStackPrec(prec: Int){
         stack_prec=prec
     }
+
     private fun openSettings(){
         val intent = Intent(ma, MySettings::class.java)
         ma.startActivityForResult(intent,1)
     }
+
     fun updateSettings(list: ArrayList<String>){
         val settButts_array = arrayOf<Button>(
             ma.findViewById(R.id.enter),
@@ -210,6 +221,7 @@ class Calculator(tmp: MainActivity) : Serializable {
 
         stack_update()
     }
+
     private fun translate_color(color: String): Int{
         when(color){
             "Red" -> return Color.RED
